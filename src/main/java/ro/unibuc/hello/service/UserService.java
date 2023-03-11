@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Component
 public class UserService {
     @Autowired
-    UserRepo repo ;
+    UserRepo repo;
 
     public UserDTO getUser(String id) {
           return entityToDTO(repo.findById(id).get());
