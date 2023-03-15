@@ -6,7 +6,7 @@ import ro.unibuc.hello.dto.ProdusDTO;
 
 
 @Repository
-public interface ProdusRepository extends MongoRepository<ProdusDTO, String> {
+public interface ProdusRepository extends MongoRepository<Produs, String> {
 
 
 }

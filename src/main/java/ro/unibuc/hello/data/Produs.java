@@ -3,7 +3,7 @@ package ro.unibuc.hello.data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "produse")
+@Document(collection = "ProdusDTO")
 public class Produs {
 
     @Id
