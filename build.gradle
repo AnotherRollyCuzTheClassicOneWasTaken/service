@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'org.asciidoctor.convert' version '1.5.8'
 	id 'java'
+	id 'jacoco'
 }
 
 group = 'ro.unibuc'
@@ -80,10 +81,28 @@ task testE2E() {
 					'--glue', 'ro.unibuc.hello.e2e.steps',
 					'src/test/resources']
 		}
+		finalizedBy jacocoTestReport
 	}
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
 }
 
 asciidoctor {
 	inputs.dir snippetsDir
 	dependsOn test
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/jacoco")
+}
+
+jacocoTestReport {
+    dependsOn test
 }
