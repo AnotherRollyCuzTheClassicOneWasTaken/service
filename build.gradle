@@ -51,16 +51,18 @@ dependencyManagement {
 test {
 	outputs.dir snippetsDir
 	useJUnitPlatform {
-		excludeTags ("IT", "E2E")
+		excludeTags ("E2E")
 	}
+	finalizedBy jacocoTestReport
 }
 
 task testIT(type: Test) {
 	outputs.dir snippetsDir
-
+	// outputs.upToDateWhen { false }
 	useJUnitPlatform {
 		includeTags "IT"
 	}
+	finalizedBy jacocoTestReport
 }
 
 configurations {
@@ -81,11 +83,12 @@ task testE2E() {
 					'--glue', 'ro.unibuc.hello.e2e.steps',
 					'src/test/resources']
 		}
-		finalizedBy jacocoTestReport
 	}
+	finalizedBy jacocoTestReport
 }
 
 jacocoTestReport {
+	dependsOn test
     reports {
         xml.required = false
         csv.required = false
@@ -101,8 +104,4 @@ asciidoctor {
 jacoco {
     toolVersion = "0.8.5"
     reportsDir = file("$buildDir/jacoco")
-}
-
-jacocoTestReport {
-    dependsOn test
 }

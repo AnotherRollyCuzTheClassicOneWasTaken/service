@@ -34,13 +34,13 @@ public class UserController {
     }
     @PutMapping("/putUser")
     @ResponseBody
-    public boolean updateuser(UserDTO user) {
-        return userService.updateuser(user);
+    public void updateuser(UserDTO user) {
+        userService.updateuser(user);
     }
 
     @DeleteMapping("/deleteUser")
     @ResponseBody
-    public boolean deleteuser(String id) {
-        return userService.deleteuser(id);
+    public void deleteuser(String id) {
+        userService.deleteuser(id);
     }
 }

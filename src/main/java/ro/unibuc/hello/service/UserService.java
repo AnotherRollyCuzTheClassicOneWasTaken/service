@@ -9,6 +9,7 @@ import ro.unibuc.hello.dto.ProdusDTO;
 import ro.unibuc.hello.dto.UserDTO;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -17,32 +18,32 @@ public class UserService {
     @Autowired
     UserRepo repo;
 
-    public UserDTO getUser(String id) {
-          return entityToDTO(repo.findById(id).get());
+    public UserDTO getUser(String id) throws NoSuchElementException {
+        return entityToDTO(repo.findById(id).get());
     }
 
-    public void createUser(UserDTO user) {
-        repo.save( toEntity(user));
+    public UserDTO createUser(UserDTO user) {
+        repo.save(toEntity(user));
+        return getUser(user.getId());
     }
 
     public List<UserDTO> getAll() {
         return repo.findAll().stream().map(this::entityToDTO).collect(Collectors.toList());
-
     }
 
     public UserEntity toEntity(UserDTO userDTO) {
         return new UserEntity(userDTO.getId(), userDTO.getEmail(), userDTO.getParola());
     }
 
-    public boolean updateuser(UserDTO userDTO) {
+    public UserDTO updateuser(UserDTO userDTO) {
         UserDTO found = entityToDTO(repo.findById(userDTO.getId()).orElse(null));
         if(found != null) {
             found.setEmail(userDTO.getEmail());
             found.setParola(userDTO.getParola());
             repo.save(toEntity(found));
-            return true;
+            return found;
         }
-        return false;
+        return null;
     }
 
     public boolean deleteuser(String id) {
