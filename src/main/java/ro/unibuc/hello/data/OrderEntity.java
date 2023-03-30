@@ -1,7 +1,7 @@
 package ro.unibuc.hello.data;
 
 import java.util.List;
-
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 @Data

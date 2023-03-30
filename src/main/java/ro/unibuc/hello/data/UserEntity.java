@@ -1,5 +1,5 @@
 package ro.unibuc.hello.data;
-
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 @Data
 public class UserEntity {
