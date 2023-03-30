@@ -1,7 +1,7 @@
 package ro.unibuc.hello.data;
 
 import org.springframework.data.annotation.Id;
-
+@Data
 public class UserEntity {
     @Id
     private String id;

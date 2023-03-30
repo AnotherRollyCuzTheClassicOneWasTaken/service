@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
-
+@Data
 public class OrderEntity {
     @Id
     private String id;
