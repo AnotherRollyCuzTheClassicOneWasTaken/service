@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 
 @SpringBootTest
-@Tag("IT")
+//@Tag("IT")
 public class UserServiceTestIT {
     @Autowired
     UserRepo userRepo;

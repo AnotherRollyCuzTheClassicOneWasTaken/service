@@ -40,6 +40,12 @@ dependencies {
 	testImplementation 'io.cucumber:cucumber-java:6.8.0'
 	testImplementation 'io.cucumber:cucumber-junit:6.8.0'
 	testImplementation 'io.cucumber:cucumber-spring:6.8.0'
+
+	compileOnly 'org.projectlombok:lombok:1.18.26'
+	annotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+	testCompileOnly 'org.projectlombok:lombok:1.18.26'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
 }
 
 dependencyManagement {
