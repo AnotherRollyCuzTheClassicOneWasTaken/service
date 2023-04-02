@@ -54,7 +54,12 @@ public class UserService {
         }
         return false;
     }
-   public UserDTO entityToDTO(UserEntity user){
-        return new UserDTO(user.getId(),user.getEmail(), user.getParola());
-   }
+
+    public UserDTO entityToDTO(UserEntity user){
+            return new UserDTO(user.getId(),user.getEmail(), user.getParola());
+    }
+
+    public void deleteAll() {
+        repo.deleteAll();
+    }
 }

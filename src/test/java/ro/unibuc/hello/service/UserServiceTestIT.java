@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import ro.unibuc.hello.data.UserRepo;
 import ro.unibuc.hello.dto.UserDTO;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,9 +15,6 @@ import java.util.List;
 @SpringBootTest
 @Tag("IT")
 public class UserServiceTestIT {
-    @Autowired
-    UserRepo userRepo;
-
     @Autowired
     private UserService userService;
 
@@ -32,33 +28,45 @@ public class UserServiceTestIT {
 
     @Test
     void test_createUser() {
+        userService.deleteAll();
         UserDTO userCheck = userService.createUser(userOriginal);
 
         checkUsers(userOriginal, userCheck);
+        userService.deleteAll();
     }
 
     @Test
     void test_getUser() {
+        userService.deleteAll();
+        userService.createUser(userOriginal);
         UserDTO userCheck = userService.getUser(userOriginal.getId());
 
         checkUsers(userOriginal, userCheck);
+        userService.deleteAll();
     }
 
     @Test
     void test_getAllUsers() {
-        UserDTO anotherUser = new UserDTO("2", "test2@email.com", "test2");
-
-        userService.createUser(anotherUser);
+        userService.deleteAll();
+        UserDTO secondUser = new UserDTO("2", "test2@email.com", "test2");
+    
+        userService.createUser(userOriginal);
+        userService.createUser(secondUser);
         List<UserDTO> userCheckList = userService.getAll();
 
-        assertEquals("1", userCheckList.get(0).getId());
-        assertEquals("updatedUser@email.com", userCheckList.get(0).getEmail());
-        assertEquals("updated", userCheckList.get(0).getParola());
-        checkUsers(anotherUser, userCheckList.get(1));
+        checkUsers(userOriginal, userCheckList.get(0));
+        checkUsers(secondUser, userCheckList.get(1));
+        userService.deleteAll();
     }
 
     @Test
     void test_updateOriginalUser() {
+        userService.deleteAll();
+        UserDTO secondUser = new UserDTO("2", "test2@email.com", "test2");
+
+        userService.createUser(userOriginal);
+        userService.createUser(secondUser);
+
         // Integrity checks
         assertEquals("1", userOriginal.getId());
         assertEquals("test1@email.com", userOriginal.getEmail());
@@ -73,10 +81,15 @@ public class UserServiceTestIT {
         assertEquals("1", userOriginal.getId());
         assertEquals("updatedUser@email.com", userOriginal.getEmail());
         assertEquals("updated", userOriginal.getParola());
+        userService.deleteAll();
     }
 
     @Test
     void test_deleteUser() {
+        userService.deleteAll();
+        UserDTO secondUser = new UserDTO("2", "test2@email.com", "test2");
+
+        userService.createUser(secondUser);
         userService.deleteuser("2");
 
         try {
@@ -84,5 +97,6 @@ public class UserServiceTestIT {
         } catch (Exception e) {
             assertTrue(true);
         }
+        userService.deleteAll();
     }
 }

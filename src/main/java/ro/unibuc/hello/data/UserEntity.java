@@ -1,44 +1,20 @@
 package ro.unibuc.hello.data;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import org.springframework.data.annotation.Id;
-
+@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserEntity {
     @Id
     private String id;
 
     private String email;
     private String parola;
-
-    public UserEntity(String id, String email, String parola) {
-        this.id = id;
-        this.email = email;
-        this.parola = parola;
-    }
-
-    public UserEntity() {
-
-    }
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getParola() {
-        return parola;
-    }
-
-    public void setParola(String parola) {
-        this.parola = parola;
-    }
 }
