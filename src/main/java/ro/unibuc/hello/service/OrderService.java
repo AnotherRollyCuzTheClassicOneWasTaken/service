@@ -14,7 +14,6 @@ import ro.unibuc.hello.data.ProdusRepository;
 import ro.unibuc.hello.data.UserRepo;
 import ro.unibuc.hello.dto.OrderDTO;
 import ro.unibuc.hello.dto.ProdusDTO;
-import ro.unibuc.hello.dto.UserDTO;
 
 @Component
 public class OrderService {
@@ -39,24 +38,24 @@ public class OrderService {
         return entityToDTO(repo.findById(id).get());
     }
 
-    public void createOrder(OrderDTO order) {
-        repo.save(toEntity(order));
+    public OrderEntity createOrder(OrderDTO order) {
+        return repo.save(toEntity(order));
     }
 
     public List<OrderDTO> getAll() {
         return repo.findAll().stream().map(this::entityToDTO).collect(Collectors.toList());
     }
 
-    public boolean updateOrder(OrderDTO orderDTO) {
+    public OrderDTO updateOrder(OrderDTO orderDTO) {
         OrderEntity found = repo.findById(orderDTO.getId()).orElse(null);
         if (found != null) {
             found.setListaProduse(
                     StreamSupport.stream(repoProduse.findAllById(orderDTO.getListaProduse()).spliterator(), false).collect(Collectors.toList()));
             found.setUser(repoUser.findById(orderDTO.getUserID()).get());
-            repo.save(found);
-            return true;
+           return entityToDTO(repo.save(found));
+
         }
-        return false;
+       return new OrderDTO();
     }
 
     public boolean deleteOrder(String id) {
@@ -73,4 +72,7 @@ public class OrderService {
         return produs;
     }
 
+    public void deleteAll() {
+        repo.deleteAll();
+    }
 }

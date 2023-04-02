@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ro.unibuc.hello.data.OrderEntity;
 import ro.unibuc.hello.dto.OrderDTO;
 import ro.unibuc.hello.service.OrderService;
 
@@ -28,8 +29,8 @@ public class OrderController {
 
     @PostMapping("/createOrder")
     @ResponseBody
-    public void createorder(OrderDTO order) {
-        orderService.createOrder(order);
+    public OrderEntity createorder(OrderDTO order) {
+        return orderService.createOrder(order);
     }
 
     @GetMapping("/getAllOrders")
@@ -40,7 +41,7 @@ public class OrderController {
 
     @PutMapping("/putOrder")
     @ResponseBody
-    public boolean updateorder(OrderDTO order) {
+    public OrderDTO updateorder(OrderDTO order) {
         return orderService.updateOrder(order);
     }
 
