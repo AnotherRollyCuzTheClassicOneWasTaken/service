@@ -30,13 +30,12 @@ public class ProdusService {
       return entityToDTO(produsRepository.findById(id).get());
     }
 
-    public void createProdus(ProdusDTO produs) {
-      produsRepository.save(toEntity(produs));
+    public Produs createProdus(ProdusDTO produs) {
+      return produsRepository.save(toEntity(produs));
     }
 
     public List<ProdusDTO> getAll() {
       return produsRepository.findAll().stream().map(this::entityToDTO).collect(Collectors.toList());
-
     }
 
     public Produs toEntity(ProdusDTO produsDTO) {
