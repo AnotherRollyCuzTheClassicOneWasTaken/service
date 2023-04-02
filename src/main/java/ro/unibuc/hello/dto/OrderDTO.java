@@ -2,6 +2,9 @@ package ro.unibuc.hello.dto;
 
 import java.util.List;
 
+import lombok.Data;
+
+@Data
 public class OrderDTO {
     private String id;
     private String userID;

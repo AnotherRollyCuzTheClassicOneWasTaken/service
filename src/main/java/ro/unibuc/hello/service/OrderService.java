@@ -14,7 +14,6 @@ import ro.unibuc.hello.data.ProdusRepository;
 import ro.unibuc.hello.data.UserRepo;
 import ro.unibuc.hello.dto.OrderDTO;
 import ro.unibuc.hello.dto.ProdusDTO;
-import ro.unibuc.hello.dto.UserDTO;
 
 @Component
 public class OrderService {
@@ -73,4 +72,7 @@ public class OrderService {
         return produs;
     }
 
+    public void deleteAll() {
+        repo.deleteAll();
+    }
 }
