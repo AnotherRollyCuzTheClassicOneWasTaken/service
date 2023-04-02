@@ -62,4 +62,8 @@ public class ProdusService {
       }
       return false;
     }
+
+    public void deleteAll() {
+      produsRepository.deleteAll();
+    }
 }

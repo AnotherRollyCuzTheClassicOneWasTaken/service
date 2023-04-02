@@ -1,7 +1,9 @@
 package ro.unibuc.hello.dto;
 
+import lombok.Data;
 import ro.unibuc.hello.data.Produs;
 
+@Data
 public class ProdusDTO {
     private String id;
 

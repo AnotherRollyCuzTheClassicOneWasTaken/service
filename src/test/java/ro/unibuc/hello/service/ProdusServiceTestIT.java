@@ -15,11 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 
 @SpringBootTest
-//@Tag("IT")
+@Tag("IT")
 public class ProdusServiceTestIT {
-    @Autowired
-    ProdusRepository produsRepository;
-
     @Autowired
     private ProdusService produsService;
 
@@ -27,33 +24,42 @@ public class ProdusServiceTestIT {
 
     @Test
     void test_createProdus() {
+        produsService.deleteAll();
         Produs produsCheck = produsService.createProdus(produsOriginal);
 
-        assertEquals(produsOriginal, produsCheck);
+        assertEquals(produsOriginal, produsService.entityToDTO(produsCheck));
+        produsService.deleteAll();
     }
 
     @Test
     void test_getProdus() {
+        produsService.deleteAll();
+        produsService.createProdus(produsOriginal);
         ProdusDTO produsCheck = produsService.getProdus(produsOriginal.getId());
 
         assertEquals(produsOriginal.getNume(), produsCheck.getNume());
+        produsService.deleteAll();
     }
 
     @Test
     void test_getAllProduse() {
+        produsService.deleteAll();
         ProdusDTO anotherProdus = new ProdusDTO("53345", "Lesa albastra", "87.50");
 
+        produsService.createProdus(produsOriginal);
         produsService.createProdus(anotherProdus);
         List<ProdusDTO> produsCheckList = produsService.getAll();
 
-        assertEquals("640a641f849746930bd895c3", produsCheckList.get(0).getId());
-        assertEquals("afaa", produsCheckList.get(0).getNume());
-        assertEquals("12345", produsCheckList.get(0).getPret());
+        assertEquals("375", produsCheckList.get(0).getId());
+        assertEquals("Zgarda roz", produsCheckList.get(0).getNume());
+        assertEquals("48.99", produsCheckList.get(0).getPret());
         //assertEquals(anotherProdus, produsCheckList.get(6));
+        produsService.deleteAll();
     }
 
     @Test
     void test_updateOriginalProdus() {
+        produsService.deleteAll();
         // Integrity checks
         assertEquals("375", produsOriginal.getId());
         assertEquals("Zgarda roz", produsOriginal.getNume());
@@ -68,16 +74,20 @@ public class ProdusServiceTestIT {
         assertEquals("375", produsOriginal.getId());
         assertEquals("Zgarda albastra", produsOriginal.getNume());
         assertEquals("66.66", produsOriginal.getPret());
+        produsService.deleteAll();
     }
 
     @Test
     void test_deleteProdus() {
-        produsService.deleteProdus("375");
+        produsService.deleteAll();
 
+        produsService.createProdus(produsOriginal);
+        produsService.deleteProdus("375");
         try {
             produsService.getProdus("375");
         } catch (Exception e) {
             assertTrue(true);
         }
+        produsService.deleteAll();
     }
 }
