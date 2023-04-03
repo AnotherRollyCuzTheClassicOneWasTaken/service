@@ -1,9 +1,10 @@
 package ro.unibuc.hello.dto;
 
 import lombok.Data;
-import ro.unibuc.hello.data.Produs;
+import lombok.Generated;
 
 @Data
+@Generated
 public class ProdusDTO {
     private String id;
 

@@ -21,7 +21,7 @@ public class InformationEntity {
     public String toString() {
         return String.format(
                 "Information[title='%s', description='%s']",
-                id, title, description);
+                title, description);
     }
 
 }

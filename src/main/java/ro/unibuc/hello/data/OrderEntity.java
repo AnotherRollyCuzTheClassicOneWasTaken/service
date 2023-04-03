@@ -3,9 +3,12 @@ package ro.unibuc.hello.data;
 import java.util.List;
 
 import lombok.Data;
+import lombok.Generated;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 @Data
+@Generated
 public class OrderEntity {
     @Id
     private String id;
