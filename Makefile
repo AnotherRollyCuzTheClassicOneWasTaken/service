@@ -19,8 +19,12 @@ build: clean
 	# all dependencies every time.
 	docker run -v m2:/root/.m2 -v `pwd`:/build $(BUILDER_TAG)
 	# Builds the docker image for running the service.
-	docker build -t $(IMAGE_TAG):$(IMAGE_VERSION) .
+	# docker build -t $(IMAGE_TAG):$(IMAGE_VERSION) .
+	docker build -t gabi2/$(IMAGE_TAG):$(IMAGE_VERSION) .
+	# Having the password in clear here is not a good practice. It should be added as a secret in Jenkins and fetched from it.
+	docker login docker.io -u gabi2 -p Armaggedon2!
+	## Publish the new image to a public repository
+	docker push gabi2/$(IMAGE_TAG):$(IMAGE_VERSION) .
 	echo "Success"
-
 post-deploy-build:
 	echo "Nothing is defined in post-deploy-build step"
