@@ -9,7 +9,7 @@ clean:
 
 build: clean
 	# A separate image for build allows the process to avoid dependencies with the build machine.
-	docker build -t $(BUILDER_TAG) -f Dockerfile.build .
+	# docker build -t $(BUILDER_TAG) -f Dockerfile.build .
 	# Runs the image generated in the above step to create the actual deployable artifact (i.e. jar file).
 	# docker run -t -v `pwd`:/build $(BUILDER_TAG)
 	# In the above build step, maven starts of by downloading all dependencies and
