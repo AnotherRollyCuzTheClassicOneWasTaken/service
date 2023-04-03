@@ -3,8 +3,10 @@ package ro.unibuc.hello.dto;
 import java.util.List;
 
 import lombok.Data;
+import lombok.Generated;
 
 @Data
+@Generated
 public class OrderDTO {
     private String id;
     private String userID;

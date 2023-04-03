@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Generated;
 
 import org.springframework.data.annotation.Id;
 @Data
@@ -11,6 +12,7 @@ import org.springframework.data.annotation.Id;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Generated
 public class UserEntity {
     @Id
     private String id;

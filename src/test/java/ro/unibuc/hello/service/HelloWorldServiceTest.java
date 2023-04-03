@@ -11,6 +11,7 @@ import ro.unibuc.hello.data.InformationRepository;
 import ro.unibuc.hello.dto.Greeting;
 import ro.unibuc.hello.exception.EntityNotFoundException;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
@@ -52,6 +53,8 @@ class HelloWorldServiceTest {
         // Arrange
         String title = "someTitle";
         InformationEntity informationEntity = new InformationEntity(title, "someDescription");
+        String text = "Information[title='someTitle', description='someDescription']";
+        Assertions.assertEquals(text, informationEntity.toString());
 
         when(mockInformationRepository.findByTitle(title)).thenReturn(informationEntity);
 
