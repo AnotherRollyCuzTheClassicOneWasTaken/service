@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import ro.unibuc.hello.data.ProdusRepository;
 import ro.unibuc.hello.dto.ProdusDTO;
 import ro.unibuc.hello.data.Produs;
 

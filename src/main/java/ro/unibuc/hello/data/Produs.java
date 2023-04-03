@@ -1,9 +1,12 @@
 package ro.unibuc.hello.data;
 import lombok.Data;
+import lombok.Generated;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "ProdusDTO")
+@Generated
 @Data
 public class Produs {
 
