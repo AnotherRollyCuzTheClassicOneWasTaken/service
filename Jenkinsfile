@@ -29,7 +29,7 @@ pipeline {
 
         stage('Lab 7') {
             steps {
-                "IMAGE_TAG=${env.IMAGE_TAG} docker-compose up -d hello"
+                sh "IMAGE_TAG=${env.IMAGE_TAG} docker-compose up -d hello"
                 sh './gradlew testE2E'
             }
         }
