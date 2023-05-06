@@ -11,6 +11,11 @@ import ro.unibuc.hello.data.InformationRepository;
 import ro.unibuc.hello.dto.Greeting;
 import ro.unibuc.hello.exception.EntityNotFoundException;
 
+// import io.micrometer.core.annotation.Counted;
+// import io.micrometer.core.annotation.Timed;
+// import io.micrometer.core.instrument.MeterRegistry;
+// import org.springframework.beans.factory.annotation.Autowired;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -23,7 +28,12 @@ class HelloWorldServiceTest {
     @InjectMocks
     HelloWorldService helloWorldService = new HelloWorldService();
 
+    // @Autowired
+    // MeterRegistry metricsRegistry;
+
     @Test
+    // @Timed(value = "hello.greeting.time", description = "Time taken to return greeting")
+    // @Counted(value = "hello.greeting.count", description = "Times greeting was returned")
     void test_hello_returnsGreeting(){
         // Arrange
         String name = "John";
